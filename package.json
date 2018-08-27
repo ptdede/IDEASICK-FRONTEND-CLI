@@ -10,7 +10,6 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@types/es6-promise": "^3.3.0",
     "chalk": "^2.4.1",
     "commander": "^2.9.0",
     "figlet": "^1.2.0",
@@ -29,6 +28,6 @@
     "@types/inquirer": "0.0.43"
   },
   "bin": {
-    "idsck": "./index.ts"
+    "idsck": "./index.js"
   }
 }
