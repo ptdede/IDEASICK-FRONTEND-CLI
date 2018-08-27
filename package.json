@@ -1,5 +1,5 @@
 {
-  "name": "IDEASICK-FRONTEND-CLI",
+  "name": "ideasick-frontend-cli",
   "version": "1.0.0",
   "description": "CLI that saving your time for developing IDEASICK frontend",
   "main": "index.js",
