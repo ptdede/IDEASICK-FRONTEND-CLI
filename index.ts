@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 import initHeader from "./src/header";
 import welcome from "./src/actions/welcome";
