@@ -6,9 +6,11 @@
   "author": "Dede Adhyatmika",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "node index.js",
+    "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@types/es6-promise": "^3.3.0",
     "chalk": "^2.4.1",
     "commander": "^2.9.0",
     "figlet": "^1.2.0",

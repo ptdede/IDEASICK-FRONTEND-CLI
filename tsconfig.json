@@ -13,7 +13,7 @@
         "strict": true
     },
     "include": [
-        "**.ts"
+        "**.ts", "**.tsx.hbs"
     ],
     "exclude": [
         "node_modules"
