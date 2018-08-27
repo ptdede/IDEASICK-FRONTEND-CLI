@@ -25,5 +25,8 @@
     "@types/fs-extra": "^5.0.4",
     "@types/handlebars": "^4.0.39",
     "@types/inquirer": "0.0.43"
+  },
+  "bin": {
+    "idsck": "./index.ts"
   }
 }
