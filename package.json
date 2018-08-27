@@ -1,0 +1,28 @@
+{
+  "name": "IDEASICK-FRONTEND-CLI",
+  "version": "1.0.0",
+  "description": "CLI that saving your time for developing IDEASICK frontend",
+  "main": "index.js",
+  "author": "Dede Adhyatmika",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.9.0",
+    "figlet": "^1.2.0",
+    "fs-extra": "^7.0.0",
+    "handlebars": "^4.0.11",
+    "inquirer": "^3.3.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.1",
+    "@types/chalk": "^2.2.0",
+    "@types/commander": "^2.12.2",
+    "@types/figlet": "^1.2.0",
+    "@types/fs-extra": "^5.0.4",
+    "@types/handlebars": "^4.0.39",
+    "@types/inquirer": "0.0.43"
+  }
+}
