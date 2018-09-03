@@ -5,11 +5,18 @@
  *
  */
 
+import { IWithBaseComponentProps } from "@idsck/hoc/withBaseComponent/interfaces";
 import React from "react";
 
-class {{ name }} extends React.Component {
+import Styled{{ name }} from "./Styled{{ name }}";
+
+class {{ name }} extends React.Component<IWithBaseComponentProps> {
   render() {
-    return null;
+     return (
+      <Styled{{ name }}>
+        {this.props.children}
+      </Styled{{ name }}>
+    );
   }
 }
 

@@ -8,13 +8,16 @@ import { DEFAULT_PATH } from "./constants";
 
 const createComponent = async () => {
     const answer = await inquirer.prompt(questions);
-    const { COMPONENT_NAME, COMPONENT_TEST }: any = answer;
-    doCreateComponent(COMPONENT_NAME, COMPONENT_TEST);
+    const { COMPONENT_NAME, COMPONENT_TEST, COMPONENT_STYLED }: any = answer;
+    doCreateComponent(COMPONENT_NAME, {
+        isTestIncluded: COMPONENT_TEST,
+        isStyledComponentIncluded: COMPONENT_STYLED,
+    });
 }
 
-async function helper(pureFilename: string, ext:string, pathInFilename: string, result: any, cb: Function) {
+async function helper(pureFilename: string, output:string, pathInFilename: string, result: any, cb: Function) {
     try {
-        fs.writeFile(`${DEFAULT_PATH}/${pathInFilename}/${pureFilename}/${pureFilename}.${ext}`, result, (err) => {
+        fs.writeFile(`${DEFAULT_PATH}/${pathInFilename}/${pureFilename}/${output}`, result, (err) => {
             if (err) {
                 console.log(chalk.red("error happen when creating file"), err)
             } else {
@@ -26,10 +29,11 @@ async function helper(pureFilename: string, ext:string, pathInFilename: string, 
     }
 }
 
-const doCreateComponent = async (filename: string, isTestIncluded: boolean) => {
+const doCreateComponent = async (filename: string, configs: any) => {
     
     const templatePath = __dirname + '/templates/class.tsx.hbs';
     const templateTestPath = __dirname + '/templates/test.tsx.hbs';
+    const templateStyledPath = __dirname + '/templates/styled.ts.hbs';
     const splitFilename = filename.split("/");
     const pureFilename = splitFilename[splitFilename.length - 1];
     
@@ -46,7 +50,7 @@ const doCreateComponent = async (filename: string, isTestIncluded: boolean) => {
             templatePath,
             { name: pureFilename }
         );
-        await helper(pureFilename, 'tsx', pathInFilename, result, () => {
+        await helper(pureFilename, `${pureFilename}.tsx`, pathInFilename, result, () => {
             console.log(chalk.green("Component has been created!"))
         });
     } catch (err) {
@@ -56,14 +60,31 @@ const doCreateComponent = async (filename: string, isTestIncluded: boolean) => {
     /**
      * create test file
      */
-    if (isTestIncluded) {
+    if (configs.isTestIncluded) {
         try {
             const result = await generateHandlebar(
                 templateTestPath,
                 { name: pureFilename }
             );
-            await helper(pureFilename, "test.tsx", pathInFilename, result, () => {
+            await helper(pureFilename, `${pureFilename}.test.tsx`, pathInFilename, result, () => {
                 console.log(chalk.green("Test has been created!"))
+            });
+        } catch (err) {
+            console.log(chalk.red("oh no, error happen!"), err)
+        }
+    }
+    
+    /**
+     * create test file
+     */
+    if (configs.isStyledComponentIncluded) {
+        try {
+            const result = await generateHandlebar(
+                templateStyledPath,
+                { name: pureFilename }
+            );
+            await helper(pureFilename, `Styled${pureFilename}.ts`, pathInFilename, result, () => {
+                console.log(chalk.green("Styled component has been created!"))
             });
         } catch (err) {
             console.log(chalk.red("oh no, error happen!"), err)

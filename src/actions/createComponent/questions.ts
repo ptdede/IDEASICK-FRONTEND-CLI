@@ -1,4 +1,4 @@
-import { COMPONENT_NAME, COMPONENT_TEST } from "./constants";
+import { COMPONENT_NAME, COMPONENT_TEST, COMPONENT_STYLED } from "./constants";
 
 const question = [
     {
@@ -14,6 +14,12 @@ const question = [
         name: COMPONENT_TEST,
         type: "confirm",
         message: "Include test file?",
+        default: true,
+    },
+    {
+        name: COMPONENT_STYLED,
+        type: "confirm",
+        message: "Include styled component?",
         default: true,
     }
 ]; 

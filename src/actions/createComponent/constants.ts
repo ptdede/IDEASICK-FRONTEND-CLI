@@ -1,9 +1,11 @@
 const COMPONENT_NAME = "COMPONENT_NAME";
 const COMPONENT_TEST = "COMPONENT_TEST";
+const COMPONENT_STYLED = "COMPONENT_STYLED";
 const DEFAULT_PATH = process.cwd() + "/src/components";
 
 export {
     COMPONENT_NAME,
     COMPONENT_TEST,
+    COMPONENT_STYLED,
     DEFAULT_PATH
 }
