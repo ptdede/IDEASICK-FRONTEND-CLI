@@ -34,6 +34,8 @@ const doCreateComponent = async (filename: string, configs: any) => {
     const templatePath = __dirname + '/templates/class.tsx.hbs';
     const templateTestPath = __dirname + '/templates/test.tsx.hbs';
     const templateStyledPath = __dirname + '/templates/styled.ts.hbs';
+    const exportPath = __dirname + '/templates/export.ts.hbs';
+    const seederPath = __dirname + '/templates/seeder.ts.hbs';
     const splitFilename = filename.split("/");
     const pureFilename = splitFilename[splitFilename.length - 1];
     
@@ -43,7 +45,7 @@ const doCreateComponent = async (filename: string, configs: any) => {
     await fse.mkdirp(`${DEFAULT_PATH}/${pathInFilename}/${pureFilename}`);
 
     /**
-     * create main filename
+     * create main filename && support file
      */
     try {
         const result = await generateHandlebar(
@@ -52,6 +54,27 @@ const doCreateComponent = async (filename: string, configs: any) => {
         );
         await helper(pureFilename, `${pureFilename}.tsx`, pathInFilename, result, () => {
             console.log(chalk.green("Component has been created!"))
+        });
+    } catch (err) {
+        console.log(chalk.red("oh no, error happen!"), err)
+    }
+
+
+    try {
+        const result = await generateHandlebar(
+            exportPath,
+            { name: pureFilename }
+        );
+        await helper(pureFilename, `export.ts`, pathInFilename, result, () => {
+            console.log(chalk.blue("export file has been created!"))
+        });
+
+        const result2 = await generateHandlebar(
+            seederPath,
+            { name: pureFilename }
+        );
+        await helper(pureFilename, `seeder.ts`, pathInFilename, result2, () => {
+            console.log(chalk.blue("seeder file has been created!"))
         });
     } catch (err) {
         console.log(chalk.red("oh no, error happen!"), err)

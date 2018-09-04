@@ -1,0 +1,13 @@
+import { ComponentCategory } from "@idsck/components/constants";
+import { IComponentExport } from "@idsck/components/interfaces";
+
+import seeder from "./seeder";
+import {{ name }} from "./{{ name }}";
+
+const data: IComponentExport = {
+  component: {{ name }},
+  seeder,
+  categories: [ComponentCategory.custom],
+};
+
+export default data;
