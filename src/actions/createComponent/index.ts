@@ -36,6 +36,7 @@ const doCreateComponent = async (filename: string, configs: any) => {
     const templateStyledPath = __dirname + '/templates/styled.ts.hbs';
     const exportPath = __dirname + '/templates/export.ts.hbs';
     const seederPath = __dirname + '/templates/seeder.ts.hbs';
+    const interfacesPath = __dirname + '/templates/interfaces.ts.hbs';
     const splitFilename = filename.split("/");
     const pureFilename = splitFilename[splitFilename.length - 1];
     
@@ -75,6 +76,14 @@ const doCreateComponent = async (filename: string, configs: any) => {
         );
         await helper(pureFilename, `seeder.ts`, pathInFilename, result2, () => {
             console.log(chalk.blue("seeder file has been created!"))
+        });
+
+        const result3 = await generateHandlebar(
+            interfacesPath,
+            { name: pureFilename }
+        );
+        await helper(pureFilename, `interfaces.ts`, pathInFilename, result3, () => {
+            console.log(chalk.blue("interfaces file has been created!"))
         });
     } catch (err) {
         console.log(chalk.red("oh no, error happen!"), err)

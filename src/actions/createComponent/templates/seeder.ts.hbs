@@ -1,10 +1,23 @@
 import { ISeeder } from "@idsck/components/interfaces";
 
+// please change the config and props or remove if you don't need them
+// also dont forget to remove this comment
+
+const config: I{{ name }}SeederConfigs = {
+    obj: null,
+};
+
+const props: I{{ name }}SeederProps = {
+    obj: null,
+};
+
+// ==================================================
+
 const seeder: ISeeder = {
     tagName: "{{ name }}",
     thumb: "static/images/components/{{ name }}.png",
-    props: {},
-    config: {},
+    props,
+    config,
 };
 
 export default seeder;
