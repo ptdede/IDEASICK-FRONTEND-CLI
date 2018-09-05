@@ -5,6 +5,9 @@
  *
  */
 
+{{#if isWithBaseComponent}}
+import withBaseComponent from "@idsck/hoc/withBaseComponent/withBaseComponent";
+{{/if}}
 import React from "react";
 
 import { I{{ name }}Props } from "./interfaces";
@@ -20,4 +23,8 @@ class {{ name }} extends React.Component<I{{ name }}Props> {
     }
 }
 
+{{#if isWithBaseComponent}}
+export default withBaseComponent({{ name }});
+{{else}}
 export default {{ name }};
+{{/if}}

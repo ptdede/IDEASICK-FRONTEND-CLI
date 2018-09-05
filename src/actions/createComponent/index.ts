@@ -8,10 +8,11 @@ import { DEFAULT_PATH } from "./constants";
 
 const createComponent = async () => {
     const answer = await inquirer.prompt(questions);
-    const { COMPONENT_NAME, COMPONENT_TEST, COMPONENT_STYLED }: any = answer;
+    const { COMPONENT_NAME, COMPONENT_TEST, COMPONENT_STYLED, IS_WITH_BASE_COMPONENT }: any = answer;
     doCreateComponent(COMPONENT_NAME, {
         isTestIncluded: COMPONENT_TEST,
         isStyledComponentIncluded: COMPONENT_STYLED,
+        isWithBaseComponent: IS_WITH_BASE_COMPONENT,
     });
 }
 
@@ -51,8 +52,12 @@ const doCreateComponent = async (filename: string, configs: any) => {
     try {
         const result = await generateHandlebar(
             templatePath,
-            { name: pureFilename }
+            { 
+                name: pureFilename,
+                isWithBaseComponent: configs.isWithBaseComponent,
+            }
         );
+        console.log("configs.isWithBaseComponent", configs.isWithBaseComponent);
         await helper(pureFilename, `${pureFilename}.tsx`, pathInFilename, result, () => {
             console.log(chalk.green("Component has been created!"))
         });
