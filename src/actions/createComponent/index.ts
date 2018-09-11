@@ -57,7 +57,6 @@ const doCreateComponent = async (filename: string, configs: any) => {
                 isWithBaseComponent: configs.isWithBaseComponent,
             }
         );
-        console.log("configs.isWithBaseComponent", configs.isWithBaseComponent);
         await helper(pureFilename, `${pureFilename}.tsx`, pathInFilename, result, () => {
             console.log(chalk.green("Component has been created!"))
         });
@@ -65,33 +64,34 @@ const doCreateComponent = async (filename: string, configs: any) => {
         console.log(chalk.red("oh no, error happen!"), err)
     }
 
+    if (configs.isWithBaseComponent) {
+        try {
+            const result = await generateHandlebar(
+                exportPath,
+                { name: pureFilename }
+            );
+            await helper(pureFilename, `export.ts`, pathInFilename, result, () => {
+                console.log(chalk.blue("export file has been created!"))
+            });
 
-    try {
-        const result = await generateHandlebar(
-            exportPath,
-            { name: pureFilename }
-        );
-        await helper(pureFilename, `export.ts`, pathInFilename, result, () => {
-            console.log(chalk.blue("export file has been created!"))
-        });
+            const result2 = await generateHandlebar(
+                seederPath,
+                { name: pureFilename }
+            );
+            await helper(pureFilename, `seeder.ts`, pathInFilename, result2, () => {
+                console.log(chalk.blue("seeder file has been created!"))
+            });
 
-        const result2 = await generateHandlebar(
-            seederPath,
-            { name: pureFilename }
-        );
-        await helper(pureFilename, `seeder.ts`, pathInFilename, result2, () => {
-            console.log(chalk.blue("seeder file has been created!"))
-        });
-
-        const result3 = await generateHandlebar(
-            interfacesPath,
-            { name: pureFilename }
-        );
-        await helper(pureFilename, `interfaces.ts`, pathInFilename, result3, () => {
-            console.log(chalk.blue("interfaces file has been created!"))
-        });
-    } catch (err) {
-        console.log(chalk.red("oh no, error happen!"), err)
+            const result3 = await generateHandlebar(
+                interfacesPath,
+                { name: pureFilename }
+            );
+            await helper(pureFilename, `interfaces.ts`, pathInFilename, result3, () => {
+                console.log(chalk.blue("interfaces file has been created!"))
+            });
+        } catch (err) {
+            console.log(chalk.red("oh no, error happen!"), err)
+        }
     }
 
     /**
