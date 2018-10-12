@@ -1,13 +1,14 @@
 import { IComponentConfig, IComponentRender } from "@idsck/components/interfaces";
 
-export interface I{{ name }}Props extends I{{ name }}SeederProps, IComponentRender {
-    config: I{{ name }}SeederConfigs;
+export interface I{{ name }}Props extends IComponentRender {
+    config?: I{{ name }}SeederConfigs;
+    data?: I{{ name }}SeederProps;
 }
 
 export interface I{{ name }}SeederConfigs {
-    obj: IComponentConfig | any | null;
+    obj?: IComponentConfig | any | null;
 }
 
 export interface I{{ name }}SeederProps {
-    obj: any | null;
+    obj?: any | null;
 }

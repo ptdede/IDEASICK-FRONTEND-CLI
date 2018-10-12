@@ -11,7 +11,7 @@ import withBaseComponent from "@idsck/hoc/withBaseComponent/withBaseComponent";
 import React from "react";
 
 import { I{{ name }}Props } from "./interfaces";
-import Styled{{ name }} from "./Styled{{ name }}";
+import Styled{{ name }} from "./{{ name }}.styled";
 
 class {{ name }} extends React.Component<I{{ name }}Props> {
     render() {
@@ -19,7 +19,7 @@ class {{ name }} extends React.Component<I{{ name }}Props> {
             <Styled{{ name }}>
                 {this.props.children}
             </Styled{{ name }}>
-        ) ;
+        );
     }
 }
 

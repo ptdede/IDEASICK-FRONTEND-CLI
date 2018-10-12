@@ -120,7 +120,7 @@ const doCreateComponent = async (filename: string, configs: any) => {
                 templateStyledPath,
                 { name: pureFilename }
             );
-            await helper(pureFilename, `Styled${pureFilename}.ts`, pathInFilename, result, () => {
+            await helper(pureFilename, `${pureFilename}.styled.ts`, pathInFilename, result, () => {
                 console.log(chalk.green("Styled component has been created!"))
             });
         } catch (err) {
